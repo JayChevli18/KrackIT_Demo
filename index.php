@@ -15,17 +15,14 @@
 
                             <h6 class="text-center">platform for college aspirants</h6>
 
-                            <form method="get" class="custom-form mt-4 pt-2 mb-lg-0 mb-5" role="search">
+                            <form method="get" action="search_results.php" class="custom-form mt-4 pt-2 mb-lg-0 mb-5" role="search">
                                 <div class="input-group input-group-lg">
-                                    <span class="input-group-text bi-search" id="basic-addon1">
-                                        
-                                    </span>
-
-                                    <input name="keyword" type="search" class="form-control" id="keyword" placeholder="Degree, Institue, Entrance Exam ..." aria-label="Search">
-
-                                    <button type="submit" class="form-control">Search</button>
+                                    <span class="input-group-text bi-search" id="basic-addon1"></span>
+                                    <input name="keyword" type="search" class="form-control" id="keyword" placeholder="Degree, Institute, Entrance Exam ..." aria-label="Search">
+                                    <button type="submit" class="btn btn-primary">Search</button>
                                 </div>
                             </form>
+
                         </div>
 
                     </div>
@@ -35,39 +32,53 @@
                 <div class="container">
                     <div class="row justify-content-center">
 
-                        <div class="col-lg-4 col-12 mb-4 mb-lg-0">
+                    <div class="col-lg-4 col-12 mb-4 mb-lg-0">
                             <div class="custom-block bg-white shadow-lg ">
-                                <form action="your-action-url" method="POST">
+                                <form action="degree_all.php" method="GET">
                                     <div class="d-flex">
-                                            <h5 class="mb-2">Explore Best Insitutes</h5>
+                                        <h5 class="mb-2">Explore Best Institutes</h5>
                                     </div>
-                                    <img src="images\topics\undraw_Graduation_re_gthn.png" style="margin-top: 0px" class="custom-block-image img-fluid" alt="">
+                                    <img src="images/topics/undraw_Graduation_re_gthn.png" style="margin-top: 0px" class="custom-block-image img-fluid" alt="">
                                     <div class="form-group">
-                                        <!-- <p class="mb-0" for="studyField">Study Field</p> -->
-                                        <select class="form-select" id="studyField" name="studyField" >
+                                        <select class="form-select" id="studyField" name="studyField">
                                             <option value="" disabled selected>Select Study Field</option>
-                                            <option value="field1">Field 1</option>
-                                            <option value="field2">Field 2</option>
-                                            <option value="field3">Field 3</option>
+                                            <?php
+                                            // Fetch data from tbl_dept
+                                            $dept_query = "SELECT * FROM tbl_dept";
+                                            $dept_result = mysqli_query($conn, $dept_query);
+                                            if ($dept_result && mysqli_num_rows($dept_result) > 0) {
+                                                while ($dept_row = mysqli_fetch_assoc($dept_result)) {
+                                                    echo "<option value='" . $dept_row['cc_dept_id'] . "'>" . $dept_row['cc_dept_name'] . "</option>";
+                                                }
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                     <br>
                                     <div class="form-group">
-                                        <!-- <p class="mb-0" for="degreeProgram">Degree Program</p> -->
                                         <select class="form-select" id="degreeProgram" name="degreeProgram">
                                             <option value="" disabled selected>Select Degree Program</option>
-                                            <option value="program1">Program 1</option>
-                                            <option value="program2">Program 2</option>
-                                            <option value="program3">Program 3</option>
+                                            <?php
+                                            // Fetch data from tbl_course
+                                            $course_query = "SELECT * FROM tbl_course";
+                                            $course_result = mysqli_query($conn, $course_query);
+                                            if ($course_result && mysqli_num_rows($course_result) > 0) {
+                                                while ($course_row = mysqli_fetch_assoc($course_result)) {
+                                                    echo "<option value='" . $course_row['cc_course_id'] . "'>" . $course_row['cc_course_name'] . "</option>";
+                                                }
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                     <br>
-                                    <div class = "text-center">
-                                        <button type="submit" class="btn custom-btn mt-2 mt-lg-3 ">Submit</button>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn custom-btn mt-2 mt-lg-3">Submit</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
+
+
                         
 
                         <div class="col-lg-6 col-12">
@@ -81,7 +92,7 @@
 
                                             <p class="text-white">Unlock your potential and discover your ideal career path with our comprehensive career assessment test. Find out where your strengths lie and what career opportunities await you!</p>
 
-                                            <a href="topics-detail.html" class="btn custom-btn mt-2 mt-lg-3">Take Free Test</a>
+                                            <a href="CAT.php" class="btn custom-btn mt-2 mt-lg-3">Take Free Test</a>
                                         </div>
                                     </div>
 
@@ -124,83 +135,58 @@
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="design-tab" data-bs-toggle="tab" data-bs-target="#design-tab-pane" type="button" role="tab" aria-controls="design-tab-pane" aria-selected="true">JEE</button>
                             </li>
-
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="marketing-tab" data-bs-toggle="tab" data-bs-target="#marketing-tab-pane" type="button" role="tab" aria-controls="marketing-tab-pane" aria-selected="false">NEET</button>
-                            </li>
-
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="finance-tab" data-bs-toggle="tab" data-bs-target="#finance-tab-pane" type="button" role="tab" aria-controls="finance-tab-pane" aria-selected="false">CAT</button>
-                            </li>
-
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="music-tab" data-bs-toggle="tab" data-bs-target="#music-tab-pane" type="button" role="tab" aria-controls="music-tab-pane" aria-selected="false">GATE</button>
-                            </li>
-
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="education-tab" data-bs-toggle="tab" data-bs-target="#education-tab-pane" type="button" role="tab" aria-controls="education-tab-pane" aria-selected="false">NIMCET</button>
                             </li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="container">
-                    <div class="row">
-
+                    <div class="row justify-content-center">
                         <div class="col-12">
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="design-tab-pane" role="tabpanel" aria-labelledby="design-tab" tabindex="0">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-4 col-md-6 col-12 mb-4">
                                             <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
+                                                <a href="course_details.php">
                                                     <div class="d-flex">
                                                         <div>
-                                                            <h5 class="mb-2">Web Design</h5>
-
-                                                            <p class="mb-0">Topic Listing Template based on Bootstrap 5</p>
+                                                            <h5 class="mb-2">JEE</h5>
+                                                            <p class="mb-0">Joint Entrance Examination</p>
                                                         </div>
-
-                                                        <span class="badge bg-design rounded-pill ms-auto">14</span>
+                                                        <!-- Add badge or other elements as needed -->
                                                     </div>
-
-                                                    <img src="images/topics/undraw_Remote_design_team_re_urdx.png" class="custom-block-image img-fluid" alt="">
+                                                    <!-- Add image or other elements as needed -->
                                                 </a>
                                             </div>
                                         </div>
-
-                                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                                        <div class="col-lg-4 col-md-6 col-12 mb-4">
                                             <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
+                                                <a href="course_details.php">
                                                     <div class="d-flex">
                                                         <div>
-                                                            <h5 class="mb-2">Graphic</h5>
-
-                                                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
+                                                            <h5 class="mb-2">JEE</h5>
+                                                            <p class="mb-0">JEE is a national-level entrance exam for engineering courses that takes place every year throughout India.JEE-Main is conducted by National Testing Agency (NTA).</p>
                                                         </div>
-
-                                                        <span class="badge bg-design rounded-pill ms-auto">75</span>
+                                                        <!-- Add badge or other elements as needed -->
                                                     </div>
-
-                                                    <img src="images/topics/undraw_Redesign_feedback_re_jvm0.png" class="custom-block-image img-fluid" alt="">
+                                                    <!-- Add image or other elements as needed -->
                                                 </a>
                                             </div>
                                         </div>
-
-                                        <div class="col-lg-4 col-md-6 col-12">
+                                        <div class="col-lg-4 col-md-6 col-12 mb-4">
                                             <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
+                                                <a href="course_details.php">
                                                     <div class="d-flex">
                                                         <div>
-                                                            <h5 class="mb-2">Logo Design</h5>
-
-                                                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
+                                                            <h5 class="mb-2">JEE</h5>
+                                                            <p class="mb-0">JEE-Main has two papers, Paper-I and Paper-II. Candidates may opt for either or both of them. Both papers contain multiple choice questions.</p>
                                                         </div>
-
-                                                        <span class="badge bg-design rounded-pill ms-auto">100</span>
+                                                        <!-- Add badge or other elements as needed -->
                                                     </div>
-
-                                                    <img src="images/topics/colleagues-working-cozy-office-medium-shot.png" class="custom-block-image img-fluid" alt="">
+                                                    <!-- Add image or other elements as needed -->
                                                 </a>
                                             </div>
                                         </div>
@@ -208,227 +194,60 @@
                                 </div>
 
                                 <div class="tab-pane fade" id="marketing-tab-pane" role="tabpanel" aria-labelledby="marketing-tab" tabindex="0">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
-                                                <div class="custom-block bg-white shadow-lg">
-                                                    <a href="topics-detail.html">
-                                                        <div class="d-flex">
-                                                            <div>
-                                                                <h5 class="mb-2">Advertising</h5>
-
-                                                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                            </div>
-
-                                                            <span class="badge bg-advertising rounded-pill ms-auto">30</span>
-                                                        </div>
-
-                                                        <img src="images/topics/undraw_online_ad_re_ol62.png" class="custom-block-image img-fluid" alt="">
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
-                                                <div class="custom-block bg-white shadow-lg">
-                                                    <a href="topics-detail.html">
-                                                        <div class="d-flex">
-                                                            <div>
-                                                                <h5 class="mb-2">Video Content</h5>
-
-                                                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                            </div>
-
-                                                            <span class="badge bg-advertising rounded-pill ms-auto">65</span>
-                                                        </div>
-
-                                                        <img src="images/topics/undraw_Group_video_re_btu7.png" class="custom-block-image img-fluid" alt="">
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-4 col-md-6 col-12">
-                                                <div class="custom-block bg-white shadow-lg">
-                                                    <a href="topics-detail.html">
-                                                        <div class="d-flex">
-                                                            <div>
-                                                                <h5 class="mb-2">Viral Tweet</h5>
-
-                                                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                            </div>
-
-                                                            <span class="badge bg-advertising rounded-pill ms-auto">50</span>
-                                                        </div>
-
-                                                        <img src="images/topics/undraw_viral_tweet_gndb.png" class="custom-block-image img-fluid" alt="">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                  </div>
-
-                                <div class="tab-pane fade" id="finance-tab-pane" role="tabpanel" aria-labelledby="finance-tab" tabindex="0">   <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-0">
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-4 col-md-6 col-12 mb-4">
                                             <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
+                                                <a href="course_details.php">
                                                     <div class="d-flex">
                                                         <div>
-                                                            <h5 class="mb-2">Investment</h5>
-
-                                                            <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
+                                                            <h5 class="mb-2">NEET</h5>
+                                                            <p class="mb-0">National Eligibility cum Entrance Test</p>
                                                         </div>
-
-                                                        <span class="badge bg-finance rounded-pill ms-auto">30</span>
+                                                        <!-- Add badge or other elements as needed -->
                                                     </div>
-
-                                                    <img src="images/topics/undraw_Finance_re_gnv2.png" class="custom-block-image img-fluid" alt="">
+                                                    <!-- Add image or other elements as needed -->
                                                 </a>
                                             </div>
                                         </div>
-
-                                        <div class="col-lg-6 col-md-6 col-12">
-                                            <div class="custom-block custom-block-overlay">
-                                                <div class="d-flex flex-column h-100">
-                                                    <img src="images/businesswoman-using-tablet-analysis-graph-company-finance-strategy-statistics-success-concept-planning-future-office-room.jpg" class="custom-block-image img-fluid" alt="">
-
-                                                    <div class="custom-block-overlay-text d-flex">
-                                                        <div>
-                                                            <h5 class="text-white mb-2">Finance</h5>
-
-                                                            <p class="text-white">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint animi necessitatibus aperiam repudiandae nam omnis</p>
-
-                                                            <a href="topics-detail.html" class="btn custom-btn mt-2 mt-lg-3">Learn More</a>
-                                                        </div>
-
-                                                        <span class="badge bg-finance rounded-pill ms-auto">25</span>
-                                                    </div>
-
-                                                    <div class="social-share d-flex">
-                                                        <p class="text-white me-4">Share:</p>
-
-                                                        <ul class="social-icon">
-                                                            <li class="social-icon-item">
-                                                                <a href="#" class="social-icon-link bi-twitter"></a>
-                                                            </li>
-
-                                                            <li class="social-icon-item">
-                                                                <a href="#" class="social-icon-link bi-facebook"></a>
-                                                            </li>
-
-                                                            <li class="social-icon-item">
-                                                                <a href="#" class="social-icon-link bi-pinterest"></a>
-                                                            </li>
-                                                        </ul>
-
-                                                        <a href="#" class="custom-icon bi-bookmark ms-auto"></a>
-                                                    </div>
-
-                                                    <div class="section-overlay"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="tab-pane fade" id="music-tab-pane" role="tabpanel" aria-labelledby="music-tab" tabindex="0">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
+                                        <div class="col-lg-4 col-md-6 col-12 mb-4">
                                             <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
+                                                <a href="course_details.php">
                                                     <div class="d-flex">
                                                         <div>
-                                                            <h5 class="mb-2">Composing Song</h5>
-
-                                                            <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
+                                                            <h5 class="mb-2">NEET</h5>
+                                                            <p class="mb-0">The National Eligibility cum Entrance Test (NEET) is conducted by the National Testing Agency (NTA). NEET is held for admission to MBBS and BDS courses in India.</p>
                                                         </div>
-
-                                                        <span class="badge bg-music rounded-pill ms-auto">45</span>
+                                                        <!-- Add badge or other elements as needed -->
                                                     </div>
-
-                                                    <img src="images/topics/undraw_Compose_music_re_wpiw.png" class="custom-block-image img-fluid" alt="">
+                                                    <!-- Add image or other elements as needed -->
                                                 </a>
                                             </div>
                                         </div>
-
-                                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
+                                        <div class="col-lg-4 col-md-6 col-12 mb-4">
                                             <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
+                                                <a href="course_details.php">
                                                     <div class="d-flex">
                                                         <div>
-                                                            <h5 class="mb-2">Online Music</h5>
-
-                                                            <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
+                                                            <h5 class="mb-2">NEET</h5>
+                                                            <p class="mb-0">NEET serves as a transformative journey that not only shapes the future of medical professionals but also nurtures compassionate and competent healthcare leaders dedicated to serving humanity.</p>
                                                         </div>
-
-                                                        <span class="badge bg-music rounded-pill ms-auto">45</span>
+                                                        <!-- Add badge or other elements as needed -->
                                                     </div>
-
-                                                    <img src="images/topics/undraw_happy_music_g6wc.png" class="custom-block-image img-fluid" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-4 col-md-6 col-12">
-                                            <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
-                                                    <div class="d-flex">
-                                                        <div>
-                                                            <h5 class="mb-2">Podcast</h5>
-
-                                                            <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                        </div>
-
-                                                        <span class="badge bg-music rounded-pill ms-auto">20</span>
-                                                    </div>
-
-                                                    <img src="images/topics/undraw_Podcast_audience_re_4i5q.png" class="custom-block-image img-fluid" alt="">
+                                                    <!-- Add image or other elements as needed -->
                                                 </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="tab-pane fade" id="education-tab-pane" role="tabpanel" aria-labelledby="education-tab" tabindex="0">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-3">
-                                            <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
-                                                    <div class="d-flex">
-                                                        <div>
-                                                            <h5 class="mb-2">Graduation</h5>
-
-                                                            <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                        </div>
-
-                                                        <span class="badge bg-education rounded-pill ms-auto">80</span>
-                                                    </div>
-
-                                                    <img src="images/topics/undraw_Graduation_re_gthn.png" class="custom-block-image img-fluid" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-6 col-md-6 col-12">
-                                            <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
-                                                    <div class="d-flex">
-                                                        <div>
-                                                            <h5 class="mb-2">Educator</h5>
-
-                                                            <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                        </div>
-
-                                                        <span class="badge bg-education rounded-pill ms-auto">75</span>
-                                                    </div>
-
-                                                    <img src="images/topics/undraw_Educator_re_ju47.png" class="custom-block-image img-fluid" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <!-- Add more tab panes as needed -->
                             </div>
-
+                        </div>
                     </div>
                 </div>
+
+
+
+
             </section>
 
 
@@ -436,125 +255,125 @@
                 <div class="section-overlay"></div>
 
                 <div class="container">
-                    <div class="row">
+    <div class="row">
 
-                        <div class="col-12 text-center">
-                            <h2 class="text-white mb-4">How does it work?</h1>
-                        </div>
+        <div class="col-12 text-center">
+            <h2 class="text-white mb-4">How does it work?</h1>
+        </div>
 
-                        <div class="col-lg-10 col-12 mx-auto">
-                            <div class="timeline-container">
-                                <ul class="vertical-scrollable-timeline" id="vertical-scrollable-timeline">
-                                    <div class="list-progress">
-                                        <div class="inner"></div>
-                                    </div>
-
-                                    <li>
-                                        <h4 class="text-white mb-3">Search your favourite topic</h4>
-
-                                        <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, cumque magnam? Sequi, cupiditate quibusdam alias illum sed esse ad dignissimos libero sunt, quisquam numquam aliquam? Voluptas, accusamus omnis?</p>
-
-                                        <div class="icon-holder">
-                                          <i class="bi-search"></i>
-                                        </div>
-                                    </li>
-                                    
-                                    <li>
-                                        <h4 class="text-white mb-3">Bookmark &amp; Keep it for yourself</h4>
-
-                                        <p class="text-white">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint animi necessitatibus aperiam repudiandae nam omnis est vel quo, nihil repellat quia velit error modi earum similique odit labore. Doloremque, repudiandae?</p>
-
-                                        <div class="icon-holder">
-                                          <i class="bi-bookmark"></i>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <h4 class="text-white mb-3">Read &amp; Enjoy</h4>
-
-                                        <p class="text-white">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi vero quisquam, rem assumenda similique voluptas distinctio, iste est hic eveniet debitis ut ducimus beatae id? Quam culpa deleniti officiis autem?</p>
-
-                                        <div class="icon-holder">
-                                          <i class="bi-book"></i>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-12 text-center mt-5">
-                            <p class="text-white">
-                                Want to learn more?
-                                <a href="#" class="btn custom-btn custom-border-btn ms-3">Check out Youtube</a>
-                            </p>
-                        </div>
+        <div class="col-lg-10 col-12 mx-auto">
+            <div class="timeline-container">
+                <ul class="vertical-scrollable-timeline" id="vertical-scrollable-timeline">
+                    <div class="list-progress">
+                        <div class="inner"></div>
                     </div>
-                </div>
+
+                    <li>
+                        <h4 class="text-white mb-3">Explore Career Paths</h4>
+
+                        <p class="text-white">Find your desired career path by using our interactive assessment tools. Discover potential degree programs based on your interests and skills.</p>
+
+                        <div class="icon-holder">
+                          <i class="bi-search"></i>
+                        </div>
+                    </li>
+                    
+                    <li>
+                    <h4 class="text-white mb-3">Buy Mock Test</h4>
+
+<p class="text-white">Purchase mock test sets tailored to your needs. Access a wide range of mock tests to prepare effectively for your exams.</p>
+
+                        <div class="icon-holder">
+                          <i class="bi-bookmark"></i>
+                        </div>
+                    </li>
+
+                    <li>
+                        <h4 class="text-white mb-3">Access Resources</h4>
+
+                        <p class="text-white">Read articles, access mock tests, and gather insights to help you make informed decisions about your career path. Enjoy learning and exploring!</p>
+
+                        <div class="icon-holder">
+                          <i class="bi-book"></i>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-12 text-center mt-5">
+            <p class="text-white">
+                Want to explore further?
+                <a href="#" class="btn custom-btn custom-border-btn ms-3">Visit our YouTube channel</a>
+            </p>
+        </div>
+    </div>
+</div>
             </section>
 
 
             <section class="faq-section section-padding" id="section_4">
-                <div class="container">
-                    <div class="row">
+<div class="container">
+    <div class="row">
 
-                        <div class="col-lg-6 col-12">
-                            <h2 class="mb-4">Frequently Asked Questions</h2>
+        <div class="col-lg-6 col-12">
+            <h2 class="mb-4">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="col-lg-5 col-12">
+            <img src="images/faq_graphic.jpg" class="img-fluid" alt="FAQs">
+        </div>
+
+        <div class="col-lg-6 col-12 m-auto">
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            What is the Interactive Career Assessment and Preparation System?
+                        </button>
+                    </h2>
+
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            The Interactive Career Assessment and Preparation System is a comprehensive web-based platform designed to assist students in exploring career options, discovering degree programs, and preparing for entrance exams.
                         </div>
-
-                        <div class="clearfix"></div>
-
-                        <div class="col-lg-5 col-12">
-                            <img src="images/faq_graphic.jpg" class="img-fluid" alt="FAQs">
-                        </div>
-
-                        <div class="col-lg-6 col-12 m-auto">
-                            <div class="accordion" id="accordionExample">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingOne">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        What is Topic Listing?
-                                        </button>
-                                    </h2>
-
-                                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            Topic Listing is free Bootstrap 5 CSS template. <strong>You are not allowed to redistribute this template</strong> on any other template collection website without our permission. Please contact TemplateMo for more detail. Thank you.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingTwo">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        How to find a topic?
-                                    </button>
-                                    </h2>
-
-                                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            You can search on Google with <strong>keywords</strong> such as templatemo portfolio, templatemo one-page layouts, photography, digital marketing, etc.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingThree">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        Does it need to paid?
-                                    </button>
-                                    </h2>
-
-                                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            How can students access career assessment tools?
+                        </button>
+                    </h2>
+
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Students can access career assessment tools by logging into the Interactive Career Assessment and Preparation System. Once logged in, they can navigate to the career assessment section and begin exploring career options based on their interests, skills, and personality traits.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Is the purchase of mock test sets mandatory?
+                        </button>
+                    </h2>
+
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Purchasing mock test sets is optional but highly recommended for students who wish to prepare effectively for entrance exams. Mock tests provide valuable practice and insights into exam formats and question types.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
             </section>
 
 

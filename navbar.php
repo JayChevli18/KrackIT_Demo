@@ -75,14 +75,8 @@ https://templatemo.com/tm-590-topic-listing
                                 <a class="nav-link" href="degree_all.php">Degrees</a>
                             </li>
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Institutes</a>
-
-                                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="institute_list.php">Institute List</a></li>
-
-                                    <li><a class="dropdown-item" href="contact.html">Contact Form</a></li>
-                                </ul>
+                            <li class="nav-item">
+                                <a class="nav-link" href="institute_list.php">Institute</a>
                             </li>
 
                             <li class="nav-item dropdown">
@@ -92,12 +86,15 @@ https://templatemo.com/tm-590-topic-listing
                                     <li><a class="dropdown-item" href="entrance_exam.php">Entrance Exam</a></li>
 
                                     <li><a class="dropdown-item" href="mock.php">Mock Test</a></li>
+                                    <li><a class="dropdown-item" href="my_mock_tests.php">My Purchased Mock Test</a></li>
+                            
                                 </ul>
                             </li>
     
                             <li class="nav-item">
                                 <a class="nav-link click-scroll" href="contact.php">Contact</a>
                             </li>
+                            
 
                             <li class="nav-item dropdown">
 

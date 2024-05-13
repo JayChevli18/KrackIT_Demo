@@ -185,17 +185,17 @@
                                 <div class="col-md-8 col-sm-9 col-xs-10">
                                     <h3 class="mar-no" style="color:white"> <span class="counter">
                                     <?php
-                                            $sql3="select count(cc_query_id) as total_query from tbl_query where cc_query_ans is null";
+                                            $sql3="select count(cc_exam_id) as total_query4 from tbl_entrance_exam";
                                             $res3=mysqli_query($conn,$sql3);
                                             $row3=mysqli_fetch_assoc($res3);
-                                            echo $row3['total_query'];
+                                            echo $row3['total_query4'];
                                     ?>
                           
                                     </span></h3>
-                                    <p class="mar-ver-5" style="color:white"> Query </p>
+                                    <p class="mar-ver-5" style="color:white"> Entrance Exam </p>
                                     <br>
                                 </div>
-                                <div class="col-md-3 col-sm-3 col-xs-2"> <i class="fas fa-clipboard-question fa-3x text-danger" ></i>
+                                <div class="col-md-3 col-sm-3 col-xs-2"> <i class="fas fa-school fa-3x text-success" ></i>
                                 </div>
                             </div>
                         </div>
