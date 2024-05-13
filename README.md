@@ -7,3 +7,12 @@ XAMPP Installation: Download XAMPP from here. Follow the installation instructio
 Krackit_documentaion: Krackit_main: index.php: Main entry point of the website. css/: Directory containing CSS files. js/: Directory containing JavaScript files. img/: Directory containing images. with various other folders too. db_cap.sql: SQL file for the db_cap database.
 
 Contact: For any inquiries or assistance, feel free to contact the project maintainer at 202312049@daiict.ac.in or chevlijay70@gmail.com
+
+
+Credentials:
+
+User Side: Email ID: demo_user@gmail.com Password: 123
+
+Admin Side: Email ID: jconeseven@gmail.com Password: jconeseven17
+
+Alumni Side: Email ID: abc1@gmail.com Password: 123
